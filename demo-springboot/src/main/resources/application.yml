@@ -1,0 +1,27 @@
+management:
+  server:
+    port: 9001
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+my:
+  name: forezp
+  age: 12
+  number: ${random.int}
+  uuid: ${random.uuid}
+  max: ${random.int(10)}
+  value: ${random.value}
+  greeting: hi,i'm ${my.name}
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://192.168.37.128:3306/lianghua?useUnicode=true&characterEncoding=utf8&characterSetResults=utf8
+    username: root
+    password: apple203
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+

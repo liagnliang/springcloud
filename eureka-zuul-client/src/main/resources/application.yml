@@ -1,0 +1,47 @@
+server:
+  port: 5000
+spring:
+  application:
+    name: service-zuul
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+zuul:
+  routes:
+    hiapi:
+      path: /hiapi/**
+      serviceId: lianghua
+    ribbonapi:
+      path: /ribbonapi/**
+      serviceId: eureka-ribbon-client
+    feignapi:
+      path: /feignapi/**
+      serviceId: eureka-feign-client
+  #prefix: /v1
+  max:
+    host:
+      connections: 500
+  host:
+    connect-timeout-millis: 60000
+    socket-timeout-millis: 60000
+
+ribbon:
+  eureka:
+    enabled: true
+  MaxAutoReTries: 0
+  MaxAutoRetriesNextServer: 1
+  ReadTimeout: 600000
+  ConnectTimeout: 600000
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enable: true
+        isolation:
+          thread:
+            timeout-in-milliseconds: 100000
+
+
